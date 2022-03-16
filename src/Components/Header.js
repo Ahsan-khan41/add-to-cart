@@ -1,39 +1,135 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Typography,
   Box,
   InputBase,
   Button,
-  Container,
-  IconButton,
-  Menu,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Toolbar,
   Divider,
+  Grid,
+  MenuItem,
+  Menu,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { styled, alpha } from "@mui/material/styles";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+//icons
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import HomeIcon from "@mui/icons-material/Home";
 
-const useStyles = makeStyles({
-  logo: {
-    color: "black",
-  },
-  searchBar: {
-    backgroundColor: "#F2F2F2",
-    width: "300px",
-    borderRadius: "5px",
-    paddingLeft: "10px",
-  },
-});
+const MobMenu = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const StyledMenu = styled((props) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "right",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    "& .MuiPaper-root": {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 180,
+      color:
+        theme.palette.mode === "light"
+          ? "rgb(55, 65, 81)"
+          : theme.palette.grey[300],
+      boxShadow:
+        "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+      "& .MuiMenu-list": {
+        padding: "4px 0",
+      },
+      "& .MuiMenuItem-root": {
+        "& .MuiSvgIcon-root": {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        "&:active": {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity
+          ),
+        },
+      },
+    },
+  }));
+
+  return (
+    <>
+      <Box anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <MenuIcon
+          id="demo-customized-button"
+          aria-controls={open ? "demo-customized-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          variant="contained"
+          disableElevation
+          onClick={handleClick}
+          endIcon={<KeyboardArrowDownIcon />}
+          // color="primary"
+          sx={{ fontSize: 40, color: "black" }}
+        />
+
+        <StyledMenu
+          id="demo-customized-menu"
+          MenuListProps={{
+            "aria-labelledby": "demo-customized-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+        >
+          <Link style={{ textDecoration: "none", color: "#000" }} to="/store/men/running-shoes">
+            <MenuItem onClick={handleClose} disableRipple>
+              <HomeIcon />
+              {/* Home Icon */}
+              Home
+            </MenuItem>
+          </Link>
+          <Link style={{ textDecoration: "none", color: "#000" }} to="/store/men/running-shoes">
+            <MenuItem onClick={handleClose} disableRipple>
+              <DirectionsRunIcon />
+              {/* Shoes Icon */}
+              Men Running Shoes
+            </MenuItem>
+          </Link>
+          <Divider sx={{ my: 0.5 }} />
+          <Link style={{ textDecoration: "none", color: "#000" }} to="/store/shopping-cart">
+            <MenuItem onClick={handleClose} disableRipple>
+              <ShoppingCartIcon />
+              {/* Cart Icon */}
+              Your Bag
+            </MenuItem>
+          </Link>
+        </StyledMenu>
+      </Box>
+    </>
+  );
+};
 
 const Header = () => {
-  const classes = useStyles();
-
   const newArrivals = [
     "NEW ARRIVALS",
     "MEN",
@@ -44,67 +140,120 @@ const Header = () => {
     "BRANDS",
     "RELEASES",
   ];
+  let navigate = useNavigate();
+  const ButtonHandler = () => {
+    navigate("/store/shopping-cart");
+  };
 
   return (
     <>
-      <AppBar position='static' elevation={0} >
+      <AppBar position="static" elevation={0} sx={{ backgroundColor: "#fff" }}>
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: "10px 60px 10px 60px",
-            backgroundColor: "white",
-            shadow: "none",
-          }}
+          display="flex"
+          direction="row"
+          justifyContent="space-between"
+          sx={{ padding: "1vw 2.5vw 1vw 2.5vw" }}
         >
-          <Box>
-            <Typography variant="h4" sx={{ color: "#000" }}>
-              FINISH LINE
+          <Box sx={{ mb: "2vh" }}>
+            <Typography variant="h4" sx={{ color: "#000", fontWeight: "bold" }}>
+              <Link
+                to="/store/men/running-shoes"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                FINISH LINE
+              </Link>
             </Typography>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <InputBase
-              placeholder="Search here"
-              className={classes.searchBar}
-            />
-            <Button
-              variant="outlined"
-              startIcon={<PersonIcon />}
-              sx={{ marginLeft: "5px" }}
+          <Box display="flex" direction="row">
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "none",
+                  md: "block",
+                  lg: "block",
+                  xl: "block",
+                },
+                mb: "2vh",
+              }}
             >
-              Account
-            </Button>
-            <Button
-              variant="outlined"
-              startIcon={<ShoppingCartIcon />}
-              sx={{ marginLeft: "5px" }}
+              <InputBase
+                placeholder="Search here"
+                sx={{
+                  backgroundColor: "#F2F2F2",
+                  width: "300px",
+                  pl: 2,
+                  borderRadius: 1,
+                }}
+              />
+              <Button
+                variant="outlined"
+                startIcon={<PersonIcon />}
+                sx={{ marginLeft: "1vw" }}
+              >
+                Account
+              </Button>
+              <Button
+                variant="outlined"
+                startIcon={<ShoppingCartIcon />}
+                sx={{ marginLeft: "1vw" }}
+                onClick={ButtonHandler}
+              >
+                Cart
+              </Button>
+            </Box>
+            <Box
+              sx={{
+                display: {
+                  xs: "block",
+                  sm: "block",
+                  md: "none",
+                  lg: "none",
+                  xl: "none",
+                },
+              }}
             >
-              Cart
-            </Button>
+              <MobMenu />
+            </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: "10px 100px 10px 100px",
-            backgroundColor: "white",
-            shadow: "none",
-          }}
-        >
-          {newArrivals.map((item, index) => (
-            <Typography variant='body2' sx={{ color: "#8C8C8C" }} key={index}>{item}</Typography>
-          ))}
-        </Box>
-        <Divider sx={{borderColor: '#D9D9D9', width: '100%'}} />
+        <Grid item md={12} lg={12} xl={12}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-evenly"
+            alignItems="center"
+          >
+            {newArrivals.map((item, index) => (
+              <Grid
+                key={index}
+                item
+                sm={1}
+                md={1}
+                lg={1}
+                xl={1}
+                sx={{
+                  display: {
+                    xs: "none",
+                    sm: "none",
+                    md: "block",
+                    lg: "block",
+                    xl: "block",
+                  },
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#8C8C8C" }}
+                  key={index}
+                >
+                  {item}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+        <Divider sx={{ borderColor: "#D9D9D9", width: "100%", mt: "2vh" }} />
       </AppBar>
     </>
   );
