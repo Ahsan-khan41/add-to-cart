@@ -12,23 +12,17 @@ import {
   Chip,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import {
-  VariantImageList,
-  ProductCarousel,
-} from "../Components/ProductDetails";
+import { VariantImageList, ProductCarousel } from "../Components";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 import AddIcon from "@mui/icons-material/Add";
-import { PRODUCTS } from "../Dictionaries/ProductDictionary";
-import { useSelector, useDispatch } from "react-redux";
-import { addtoCart } from "../redux/features/cartSlice";
-import { fetchProducts } from "../redux/features/productsSlice";
-
+import { PRODUCTS } from "../Data/mockData";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/features/cartSlice";
 
 const ProductDetails = () => {
-
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
   let params = useParams();
+
   const ratingsStar = [1, 2, 3, 4, 5];
 
   const arrayList = [
@@ -58,31 +52,6 @@ const ProductDetails = () => {
     },
   ];
 
-  const productCarouselList = [
-    "https://media.finishline.com/i/finishline/GZ9260_100_P1?$default$&w=671&&h=671&bg=rgb(237,237,237)",
-    "https://media.finishline.com/i/finishline/GZ9260_100_P1?$default$&w=671&&h=671&bg=rgb(237,237,237)",
-    "https://media.finishline.com/i/finishline/GZ9260_100_P2?$default$&w=670&h=670&bg=rgb(237,237,237)",
-    "https://media.finishline.com/i/finishline/GZ9260_100_P3?$default$&w=670&h=670&bg=rgb(237,237,237)",
-    "https://media.finishline.com/i/finishline/GZ9260_100_P4?$default$&w=670&h=670&bg=rgb(237,237,237)",
-    "https://media.finishline.com/i/finishline/GZ9260_100_P6?$default$&w=670&h=670&bg=rgb(237,237,237)",
-  ];
-
-  const sizes = [
-    "7.0",
-    "7.5",
-    "8.0",
-    "8.5",
-    "9.0",
-    "9.5",
-    "10.0",
-    "10.5",
-    "11.0",
-    "11.5",
-    "12.0",
-    "13",
-    "14.0",
-  ];
-
   const details = [
     {
       title: "Product Details",
@@ -100,18 +69,20 @@ const ProductDetails = () => {
 
   const [productCarousel, setProductCarousel] = useState([]);
   const [product, setProduct] = useState({});
+  const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
-     const found =  PRODUCTS.find((item, index) => item.id === Number(params.productId));
+    const found = PRODUCTS.find(
+      (item, index) => item.id === Number(params.productId)
+    );
     if (found) {
       setProductCarousel(found.productDetails.carouselImg);
-      setProduct(found)
+      setProduct(found);
+      setSizes(found.sizes);
     } else {
       alert("No product found!");
     }
   }, [params.productId]);
-
-  // console.log(product);
 
   return (
     <>
@@ -120,12 +91,12 @@ const ProductDetails = () => {
         <Grid
           container
           spacing={2}
-          sx={{ display: "flex", padding: "1rem 3rem 1rem 3rem" }}
+          sx={{ display: "flex", padding: "3vh 3vw 1vh 3vw" }}
         >
-          <Grid item xs={12} md={7} xl={7} sx={{ padding: "1rem" }}>
+          <Grid item xs={12} sm={12} md={7} sx={{ padding: "1rem" }}>
             <ProductCarousel productCarouselList={productCarousel} />
           </Grid>
-          <Grid item xs={12} md={5} xl={5} sx={{ padding: "1rem" }}>
+          <Grid item xs={12} sm={12} md={5} sx={{ padding: "1rem" }}>
             <Typography variant="body2">
               {ratingsStar.map((item, index) => (
                 <StarIcon key={index} sx={{ fontSize: 17 }} />
@@ -158,14 +129,19 @@ const ProductDetails = () => {
             </Typography>
             {/*rendering image list of variants */}
             <Box
-              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: { sm: "center", lg: "start" },
+              }}
             >
               <VariantImageList arrayList={arrayList} />
             </Box>
             <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 1 }}>
               Size
             </Typography>
-            <Box>
+            <Box sx={{ textAlign: { sm: "center", lg: "start" } }}>
               <Chip
                 label="6.5"
                 disabled
@@ -183,14 +159,18 @@ const ProductDetails = () => {
             <Divider sx={{ mt: 4, mb: 4 }} />
             <Box>
               <Typography variant="body1">
-                <input type="radio" />
+                {/* <input type="radio" /> */}
                 Ship to an Address
                 <Typography variant="caption" display="block">
                   (FREE SHIPPING)
                 </Typography>
               </Typography>
             </Box>
-            <Button onClick={() => dispatch(fetchProducts(product))} variant="contained" sx={{ width: 1, mt: 3 }}>
+            <Button
+              onClick={() => dispatch(addProduct(product))}
+              variant="contained"
+              sx={{ width: 1, mt: 3 }}
+            >
               Add to Bag
             </Button>
             <Box
@@ -216,9 +196,11 @@ const ProductDetails = () => {
             </Box>
           </Grid>
         </Grid>
+        {/* Accordions Section */}
         <Grid
           container
-          sx={{ display: "flex", padding: "1rem 3rem 1rem 4rem" }}
+          direction="column"
+          sx={{ display: "flex", padding: "1vh 3vw 1vh 4vw" }}
         >
           <Grid item xs={12} md={12} xl={12}>
             {details.map((item, index) => (
@@ -231,7 +213,7 @@ const ProductDetails = () => {
                   <Typography>{item.title}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">
+                  <Box>
                     <Typography
                       variant="body1"
                       sx={{ fontWeight: "bold", mb: 2, mt: 1 }}
@@ -239,9 +221,11 @@ const ProductDetails = () => {
                       {" "}
                       Made from Sustainable Materials
                     </Typography>
-                    This product is made with Primeblue to save resources and
-                    decrease emissions 50% of the upper is textile, 75% of the
-                    textile is Primeblue yarn
+                    <Typography variant="body2">
+                      This product is made with Primeblue to save resources and
+                      decrease emissions 50% of the upper is textile, 75% of the
+                      textile is Primeblue yarn
+                    </Typography>
                     <Typography
                       variant="body1"
                       sx={{ fontWeight: "bold", mb: 2, mt: 1 }}
@@ -249,14 +233,17 @@ const ProductDetails = () => {
                       {" "}
                       Product Features
                     </Typography>
-                    Stretch knit upper for breathable comfort Lace-up
-                    construction BOOST midsole for comfort Supportive, sock-like
-                    fit The adidas Originals NMD R1 Primeblue is imported. Made
-                    in part with Parley Ocean Plastic, the adidas Originals NMD
-                    R1 Primeblue Casual shoes are as sleek and stylish as they
-                    are sustainable. Rock these classics when you want to
-                    maintain your comfort and stand out from the crowd.
-                  </Typography>
+                    <Typography variant="body2">
+                      Stretch knit upper for breathable comfort Lace-up
+                      construction BOOST midsole for comfort Supportive,
+                      sock-like fit The adidas Originals NMD R1 Primeblue is
+                      imported. Made in part with Parley Ocean Plastic, the
+                      adidas Originals NMD R1 Primeblue Casual shoes are as
+                      sleek and stylish as they are sustainable. Rock these
+                      classics when you want to maintain your comfort and stand
+                      out from the crowd.
+                    </Typography>
+                  </Box>
                 </AccordionDetails>
               </Accordion>
             ))}

@@ -3,14 +3,14 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
 import ProductDetails from "../Pages/ProductDetails";
 import AddtoCart from "../Pages/AddtoCart";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import {Header, Footer} from "../Components";
 import Page404 from "../Pages/Page404";
 
 const AppRoutes = () => {
+
   return (
     <>
-      <Header />
+      <Header  />
       <Routes>
         <Route path="/store/men/running-shoes" element={<Home />} />
         <Route

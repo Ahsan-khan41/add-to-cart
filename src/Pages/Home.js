@@ -8,8 +8,8 @@ import {
   Checkbox,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { RelevanceSearch, ProductCard } from "../Components/Home";
-import { PRODUCTS } from "../Dictionaries/ProductDictionary";
+import { RelevanceSearch, ProductCard } from "../Components";
+import { PRODUCTS } from "../Data/mockData";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -52,8 +52,6 @@ const Home = () => {
                 xs: "none",
                 sm: "none",
                 md: "block",
-                xl: "block",
-                lg: "block",
               },
             }}
           >
@@ -69,16 +67,16 @@ const Home = () => {
               </Accordion>
             ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={10} lg={10}>
+          <Grid item xs={12} sm={12} md={10} >
             <Typography variant="h5">MEN'S RUNNING SHOES (613)</Typography>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
-              <Grid item xs={12} sm={6} md={6} lg={6} xl={6} justifyContent="flex-start" >
+              <Grid item xs={12} sm={6} md={6}  justifyContent="flex-start" >
                 <Checkbox />
                 <Typography variant="overline" display="inline">
                   Shop Your Store, Set Location
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6} xl={6} alignItems="flex-end" display="contents" >
+              <Grid item xs={12} sm={6}  alignItems="flex-end" display="contents" >
                 <RelevanceSearch itemsArr={itemsArr} />
               </Grid>
             </Grid>

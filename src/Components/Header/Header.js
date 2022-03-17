@@ -15,11 +15,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 //icons
+import MenuIcon from "@mui/icons-material/Menu";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -85,10 +82,8 @@ const MobMenu = () => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           variant="contained"
-          disableElevation
+          elevation={0}
           onClick={handleClick}
-          endIcon={<KeyboardArrowDownIcon />}
-          // color="primary"
           sx={{ fontSize: 40, color: "black" }}
         />
 
@@ -129,7 +124,7 @@ const MobMenu = () => {
   );
 };
 
-const Header = () => {
+const Header = ({onSearch}) => {
   const newArrivals = [
     "NEW ARRIVALS",
     "MEN",
@@ -171,8 +166,7 @@ const Header = () => {
                   xs: "none",
                   sm: "none",
                   md: "block",
-                  lg: "block",
-                  xl: "block",
+                  
                 },
                 mb: "2vh",
               }}
@@ -185,6 +179,7 @@ const Header = () => {
                   pl: 2,
                   borderRadius: 1,
                 }}
+                onChange={onSearch}
               />
               <Button
                 variant="outlined"

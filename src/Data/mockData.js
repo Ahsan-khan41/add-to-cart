@@ -1,12 +1,28 @@
 export const PRODUCTS = [
   {
+    id: 1,
     title: "NMD R1 PRIMEBLUE SHOES",
     imageUrl:
       "https://media.finishline.com/s/finishline/GZ9260_100?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
     colors: 6,
     price: 150,
+    quantity: 1,
     reviews: 22,
-    id: 1,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -18,13 +34,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 2,
     title: "ADIZERO BOSTON 10 M",
     imageUrl:
       "https://media.finishline.com/s/finishline/DO6706_001?$Main$&$global_access_grid$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 99,
+    quantity: 1,
     reviews: 25,
     colors: 3,
-    id: 2,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -36,13 +69,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 3,
     title: "RUNFALCON SHOES",
     imageUrl:
       "https://media.finishline.com/s/finishline/DM8317_100?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 120,
+    quantity: 1,
     reviews: 30,
     colors: 6,
-    id: 3,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://media.finishline.com/i/finishline/DM8317_100_P1?$default$&w=671&&h=671&bg=rgb(237,237,237)",
@@ -54,13 +104,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 4,
     title: "RESPONSE RUN SHOES",
     imageUrl:
       "https://media.finishline.com/i/finishline/CW6973_600_P1?$default$&w=671&&h=671&bg=rgb(237,237,237)",
-    price: 150,
+    price: 99,
     colors: 5,
+    quantity: 1,
     reviews: 12,
-    id: 4,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://media.finishline.com/i/finishline/CW6973_600_P2?$default$&w=670&h=670&bg=rgb(237,237,237)",
@@ -72,13 +139,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 5,
     title: "SHOWTHEWAY SHOES",
     imageUrl:
       "https://media.finishline.com/s/finishline/M2002RLC_737?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 70,
     colors: 2,
+    quantity: 1,
     reviews: 9,
-    id: 5,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -90,13 +174,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 6,
     title: "ULTRABOOST 20 CNY",
     imageUrl:
       "https://media.finishline.com/s/finishline/DH4245_001?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 80,
     colors: 2,
+    quantity: 1,
     reviews: 9,
-    id: 6,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -113,8 +214,25 @@ export const PRODUCTS = [
       "https://media.finishline.com/s/finishline/DM9554_900?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
     price: 150,
     colors: 2,
+    quantity: 1,
     reviews: 9,
     id: 7,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -126,13 +244,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 8,
     title: "FORUM LOW SHOES",
     imageUrl:
       "https://media.finishline.com/s/finishline/DD1068_001?$Main$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 33,
     colors: 2,
+    quantity: 1,
     reviews: 9,
-    id: 8,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
@@ -144,13 +279,30 @@ export const PRODUCTS = [
     },
   },
   {
+    id: 9,
     title: "NMD_R1 V2 SHOES",
     imageUrl:
       "https://media.finishline.com/s/finishline/GX6329_036?$Main$&$global_access_grid$&layer0=[h=245&w=245&bg=rgb(237,237,237)]&h=245&w=245&fmt=webp",
-    price: 150,
+    price: 60,
     colors: 2,
+    quantity: 1,
     reviews: 9,
-    id: 9,
+    sizes: [
+      "7.0",
+      "7.5",
+      "8.0",
+      "8.5",
+      "9.0",
+      "9.5",
+      "10.0",
+      "10.5",
+      "11.0",
+      "11.5",
+      "12.0",
+      "13",
+      "14.0",
+    ],
+
     productDetails: {
       carouselImg: [
         "https://assets.adidas.com/images/w_1880,f_auto,q_auto/1deb6c2b848d4d59b732ab89012e9fe1_9366/FX3754_04_standard.jpg",
