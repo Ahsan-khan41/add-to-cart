@@ -152,7 +152,7 @@ const Header = ({onSearch}) => {
           <Box sx={{ mb: "2vh" }}>
             <Typography variant="h4" sx={{ color: "#000", fontWeight: "bold" }}>
               <Link
-                to="/store/men/running-shoes"
+                to="/"
                 style={{ textDecoration: "none", color: "#000" }}
               >
                 FINISH LINE

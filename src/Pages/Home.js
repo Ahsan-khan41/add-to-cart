@@ -34,7 +34,7 @@ const Home = () => {
   ];
 
   const onClickHandler = (param) => {
-    navigate(`/store/men/running-shoes/${param}`);
+    navigate(`/${param}`);
     document.documentElement.scrollTop = 0;
   };
 
