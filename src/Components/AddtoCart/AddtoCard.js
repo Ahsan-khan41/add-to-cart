@@ -32,8 +32,8 @@ export const CartProductCard = (props) => {
     dispatch(addQuantity({ quantity, _id, price }));
   };
   const onRemoveClick = () => {
-    const { quantity } = item;
-    dispatch(removeQuantity({ quantity, _id: item._id }));
+    const { quantity, _id } = item;
+    dispatch(removeQuantity({ quantity, _id }));
   };
   return (
     <>

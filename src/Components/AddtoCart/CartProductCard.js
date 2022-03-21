@@ -21,7 +21,7 @@ import {
   removeQuantity,
 } from "../../redux/features/cartSlice";
 
-export default function CartProductCard  (props) {
+export default function CartProductCard(props) {
   const { item } = props;
   const cartItems = useSelector(getCartItems);
   const dispatch = useDispatch();
@@ -40,7 +40,6 @@ export default function CartProductCard  (props) {
         sx={{
           display: "flex",
           width: "auto",
-          // height: "20vh",
           padding: "3vh 1vw 5vh 0",
         }}
         elevation={0}
@@ -84,8 +83,8 @@ export default function CartProductCard  (props) {
                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                   {item.title}
                 </Typography>
+                <Typography variant="subtitle2">Size: {item.size}</Typography>
                 <Typography variant="caption">
-                  Size: 8.0 <br />
                   Color: Wolf Grey/Kumquat/Cool Grey/White
                   <br />
                   Qualifies for Free Shipping
@@ -126,4 +125,4 @@ export default function CartProductCard  (props) {
       <Divider sx={{ mt: 0.5 }} />
     </>
   );
-};
+}

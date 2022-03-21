@@ -47,7 +47,7 @@ export default function ProductCard(props) {
               {props.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {props.price}
+             ${props.price}
             </Typography>
             <Box
               sx={{

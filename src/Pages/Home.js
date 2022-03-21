@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -6,14 +6,33 @@ import {
   AccordionSummary,
   Grid,
   Checkbox,
+  Stack,
+  Skeleton,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { RelevanceSearch, ProductCard } from "../Components";
-import { PRODUCTS } from "../Data/mockData";
 import { useNavigate } from "react-router-dom";
+import { fetchProducts } from "../api";
 
 const Home = () => {
   let navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [sortVal, setSortVal] = useState("");
+  const [err, setErr] = useState("");
+
+  useEffect(() => {
+    const funcToFetch = async () => {
+      const response = await fetchProducts();
+      if (response) {
+        setProducts(response);
+        setLoading(false)
+      } else {
+        console.log("error occured while fetching!");
+      }
+    };
+    funcToFetch();
+  }, []);
 
   const sideBar = [
     "Brand",
@@ -36,6 +55,27 @@ const Home = () => {
   const onClickHandler = (param) => {
     navigate(`/${param}`);
     document.documentElement.scrollTop = 0;
+  };
+
+  const handleChange = (e) => {
+    setSortVal(e.target.value);
+    switch (e.target.value) {
+      case "Low to High":
+        const lowToHigh = products.sort((a, b) => a.price - b.price); //low to high
+        // console.log(lowToHigh);
+        setProducts(lowToHigh);
+        break;
+
+      case "High to Low":
+        const highToLow = products.sort((a, b) => b.price - a.price); //high to low
+        console.log(highToLow);
+        setProducts(highToLow);
+        break;
+      case "Top Rated":
+        const toprated = products.sort((a, b) => b.reviews - a.reviews); //top rated
+        setProducts(toprated);
+        break;
+    }
   };
 
   return (
@@ -67,32 +107,65 @@ const Home = () => {
               </Accordion>
             ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={10} >
+          <Grid item xs={12} sm={12} md={10}>
             <Typography variant="h5">MEN'S RUNNING SHOES (613)</Typography>
-            <Grid container direction="row" justifyContent="space-between" alignItems="center">
-              <Grid item xs={12} sm={6} md={6}  justifyContent="flex-start" >
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Grid item xs={12} sm={6} md={6} justifyContent="flex-start">
                 <Checkbox />
                 <Typography variant="overline" display="inline">
                   Shop Your Store, Set Location
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={6}  alignItems="flex-end" display="contents" >
-                <RelevanceSearch itemsArr={itemsArr} />
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                alignItems="flex-end"
+                display="contents"
+              >
+                <RelevanceSearch handleChange={handleChange} val={sortVal} />
               </Grid>
             </Grid>
             <Grid container wrap="wrap">
-              {PRODUCTS.map((item, index) => (
-                <Grid key={index} item xs={12} sm={6} md={4} lg={3} xl={2}>
-                  <ProductCard
-                    imageUrl={item.imageUrl}
-                    title={item.title}
-                    price={item.price}
-                    reviews={item.reviews}
-                    colors={item.colors}
-                    onClick={() => onClickHandler(item.id)}
-                  />
-                </Grid>
-              ))}
+              {loading
+                ? sideBar.map((value, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      xl={2}
+                      sx={{ padding: "0.15vw" }}
+                    >
+                      <Stack spacing={1}>
+                        <Skeleton
+                          variant="rectangular"
+                          width={"245px"}
+                          height={"245px"}
+                        />
+                        <Skeleton variant="text" width={"245px"} />
+                      </Stack>
+                    </Grid>
+                  ))
+                : products.map((item, index) => (
+                    <Grid key={index} item xs={12} sm={6} md={4} lg={3} xl={2}>
+                      <ProductCard
+                        imageUrl={item.imageUrl}
+                        title={item.title}
+                        price={item.price}
+                        reviews={item.reviews}
+                        colors={item.colors}
+                        onClick={() => onClickHandler(item._id)}
+                      />
+                    </Grid>
+                  ))}
             </Grid>
             <Box
               sx={{
